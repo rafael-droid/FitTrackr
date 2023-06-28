@@ -1,4 +1,4 @@
-package pl.workout.SportZone.Model;
+package pl.workout.FitTrackr.Model;
 
 
 import jakarta.persistence.*;
@@ -6,8 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
+import pl.workout.FitTrackr.Model.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter

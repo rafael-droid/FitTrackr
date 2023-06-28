@@ -1,4 +1,4 @@
-package pl.workout.SportZone.Model;
+package pl.workout.FitTrackr.Model;
 
 
 import jakarta.persistence.*;

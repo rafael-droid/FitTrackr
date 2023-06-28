@@ -1,4 +1,4 @@
-package pl.workout.SportZone.Model;
+package pl.workout.FitTrackr.Model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,11 +24,8 @@ public class User implements Serializable {
     private String email;
 
     private String password;
+    @OneToMany
     private List<Activity> activities;
     private List<Route> routes;
     private List<SportGroup> groups;
-
-
-
-
 }

@@ -1,4 +1,4 @@
-package pl.workout.SportZone.Model;
+package pl.workout.FitTrackr.Model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
