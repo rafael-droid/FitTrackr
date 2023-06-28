@@ -20,5 +20,6 @@ public class Note implements Serializable {
     private Long id;
     private String title;
     private String content;
+    @ManyToOne
     private Activity activity;
 }

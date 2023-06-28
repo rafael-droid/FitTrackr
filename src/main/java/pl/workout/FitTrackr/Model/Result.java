@@ -18,6 +18,6 @@ public class Result implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Activity activity;
+    //private Activity activity;
 }
 

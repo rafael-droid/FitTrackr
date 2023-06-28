@@ -24,6 +24,8 @@ public class Route implements Serializable {
     private Double distance;
     @ElementCollection
     private List<Double> waypoints;
+    @ManyToOne
+    private User user;
 
 }
 

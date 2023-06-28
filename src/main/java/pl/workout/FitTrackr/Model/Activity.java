@@ -24,9 +24,11 @@ public class Activity implements Serializable{
     private String duration;
     private Double distance;
     private int caloriesBurned;
-
-    private List<User> personList;
+    @ManyToOne
+    private User user;
+    @OneToOne(cascade = CascadeType.ALL)
     private Result result;
-    private Note note;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> note;
 
 }

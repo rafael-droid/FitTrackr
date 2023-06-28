@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -14,7 +15,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "user")
-@Table(name = "user")
 public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,8 +24,15 @@ public class User implements Serializable {
     private String email;
 
     private String password;
-    @OneToMany
+    private Date dateOfBirth;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Activity> activities;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Route> routes;
+    @ManyToMany
+    @JoinTable(
+            name = "users_groups",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "group_id"))
     private List<SportGroup> groups;
 }

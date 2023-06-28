@@ -18,7 +18,7 @@ public class SportGroup {
     private Long id;
     private String name;
     private String description;
-
+    @ManyToMany
     private List<User> members;
 }
 
