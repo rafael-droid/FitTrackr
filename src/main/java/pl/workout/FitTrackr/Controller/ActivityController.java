@@ -1,13 +1,9 @@
 package pl.workout.FitTrackr.Controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.jackson.Jacksonized;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.workout.FitTrackr.Model.Activity;
 import pl.workout.FitTrackr.Service.ActivityService;
 
@@ -24,5 +20,11 @@ public class ActivityController {
     @ResponseStatus(HttpStatus.OK)
     public List<Activity> getActivity(){
         return activityService.getActivities();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Activity getActivityById(@PathVariable("id") Long id){
+        return activityService.getActivityById(id);
     }
 }
