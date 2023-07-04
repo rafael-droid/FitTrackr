@@ -13,6 +13,6 @@ public interface ActivityRepository extends JpaRepository<Activity, Long> {
 
 
     @Query("Select a From activity a " +
-            " left join fetch a.user")
+            " left join fetch a.userId")
     List<Activity> findAllActivities();
 }

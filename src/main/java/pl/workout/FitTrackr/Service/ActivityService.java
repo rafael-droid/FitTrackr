@@ -13,7 +13,7 @@ public class ActivityService {
     private final ActivityRepository activityRepository;
 
     public List<Activity> getActivities(){
-        return activityRepository.findAllActivities();
+        return activityRepository.findAll();
     }
     public Activity getActivityById(Long id){
         return activityRepository.findAllById(id);
