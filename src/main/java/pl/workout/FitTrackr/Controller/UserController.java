@@ -2,15 +2,12 @@ package pl.workout.FitTrackr.Controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.workout.FitTrackr.Model.User;
-import pl.workout.FitTrackr.Repository.UserRepository;
 import pl.workout.FitTrackr.Service.UserService;
 
 import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/users")
 @RestController
@@ -22,5 +19,11 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers(){
         return userService.getUsers();
+    }
+
+    @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public User getUserById(@PathVariable("id") Long id){
+        return userService.getUserById(id).orElseThrow();
     }
 }
