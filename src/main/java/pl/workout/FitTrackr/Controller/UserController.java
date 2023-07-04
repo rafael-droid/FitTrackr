@@ -26,4 +26,10 @@ public class UserController {
     public User getUserById(@PathVariable("id") Long id){
         return userService.getUserById(id).orElseThrow();
     }
+
+    @PostMapping("/")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User createUser(@RequestBody User user){
+        return userService.addUser(user);
+    }
 }
