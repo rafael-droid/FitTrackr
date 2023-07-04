@@ -32,4 +32,10 @@ public class UserController {
     public User createUser(@RequestBody User user){
         return userService.addUser(user);
     }
+
+    @PutMapping("/")
+    @ResponseStatus(HttpStatus.OK)
+    public User updateUser(@RequestBody User user){
+        return userService.editUser(user);
+    }
 }

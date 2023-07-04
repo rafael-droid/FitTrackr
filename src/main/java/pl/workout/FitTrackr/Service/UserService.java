@@ -24,4 +24,19 @@ public class UserService {
     public User addUser(User user) {
         return userRepository.save(user);
     }
+
+    public User editUser(User user) {
+        User userDb = userRepository.findById(user.getId()).orElseThrow();
+
+        userDb.setFirstName(user.getFirstName());
+        userDb.setLastName(user.getLastName());
+        userDb.setPassword(user.getPassword());
+        userDb.setEmail(user.getEmail());
+        userDb.setDateOfBirth(user.getDateOfBirth());
+        userDb.setActivity(user.getActivity());
+        userDb.setGroups(user.getGroups());
+        userDb.setRoutes(user.getRoutes());
+
+        return userDb;
+    }
 }
