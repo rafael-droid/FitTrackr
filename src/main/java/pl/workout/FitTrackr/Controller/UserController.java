@@ -7,9 +7,9 @@ import pl.workout.FitTrackr.Model.User;
 import pl.workout.FitTrackr.Service.UserService;
 
 import java.util.List;
-import java.util.Optional;
 
-@RequestMapping("/users")
+
+@RequestMapping("/user")
 @RestController
 @RequiredArgsConstructor
 public class UserController {

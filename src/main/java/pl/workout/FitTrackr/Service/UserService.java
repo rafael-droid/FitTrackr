@@ -1,6 +1,7 @@
 package pl.workout.FitTrackr.Service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.workout.FitTrackr.Model.User;
 import pl.workout.FitTrackr.Repository.UserRepository;
@@ -11,10 +12,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+    @Autowired
     public final UserRepository userRepository;
 
     public List<User> getUsers(){
-        return userRepository.findAllUsers();
+        return userRepository.findAll();
     }
 
     public Optional<User> getUserById(Long id) {
@@ -33,9 +35,6 @@ public class UserService {
         userDb.setPassword(user.getPassword());
         userDb.setEmail(user.getEmail());
         userDb.setDateOfBirth(user.getDateOfBirth());
-        userDb.setActivity(user.getActivity());
-        userDb.setGroups(user.getGroups());
-        userDb.setRoutes(user.getRoutes());
 
         return userDb;
     }

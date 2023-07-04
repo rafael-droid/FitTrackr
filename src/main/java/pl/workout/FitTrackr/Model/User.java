@@ -25,9 +25,7 @@ public class User implements Serializable {
 
     private String password;
     private Date dateOfBirth;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "userId")
-    private List<Activity> activity;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Route> routes;
     @ManyToMany
