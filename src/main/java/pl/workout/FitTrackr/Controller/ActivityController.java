@@ -21,9 +21,9 @@ public class ActivityController {
         return activityService.getActivities(userId);
     }
 
-    //@GetMapping("/{userId}/activity/{activityId}")
-   // @ResponseStatus(HttpStatus.OK)
-    //public Activity getActivityById(@PathVariable("id") Long id){
-        //return activityService.getActivityById(id);
-   // }
+    @PostMapping("/{userId}/activity")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Activity createActivity(@PathVariable("userId") Long userId, @RequestBody Activity activity){
+        return activityService.addActivity(userId, activity);
+    }
 }
