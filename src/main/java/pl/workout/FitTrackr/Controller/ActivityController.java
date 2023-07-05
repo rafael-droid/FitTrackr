@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import pl.workout.FitTrackr.Exception.ResourceNotFoundException;
 import pl.workout.FitTrackr.Model.Activity;
 import pl.workout.FitTrackr.Service.ActivityService;
 import java.util.List;
@@ -23,7 +24,13 @@ public class ActivityController {
 
     @PostMapping("/{userId}/activity")
     @ResponseStatus(HttpStatus.CREATED)
-    public Activity createActivity(@PathVariable("userId") Long userId, @RequestBody Activity activity){
+    public Activity createActivity(@PathVariable("userId") Long userId, @RequestBody Activity activity) {
         return activityService.addActivity(userId, activity);
+    }
+
+    @PutMapping("/{userId}/activity/{activityId}")
+    @ResponseStatus(HttpStatus.OK)
+    public Activity updateActivity(@PathVariable("userId") Long userId, @PathVariable("activityId") Long activityId, @RequestBody Activity activity){
+        return activityService.updateActivity(userId, activityId, activity);
     }
 }

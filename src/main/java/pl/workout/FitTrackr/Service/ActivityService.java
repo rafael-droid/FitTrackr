@@ -34,4 +34,17 @@ public class ActivityService {
         return activityRepository.save(activity);
 
     }
+
+    public Activity updateActivity(Long userId, Long activityId, Activity activity) {
+        User userDb = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+        Activity activityDb = activityRepository.findByIdAndUserId(activityId,userId)
+                .orElseThrow(() -> new ResourceNotFoundException("ActivityId " + activityId + " not found"));
+////not finished!!!!!!!!!!!!
+
+
+
+
+        return activity;
+    }
 }
