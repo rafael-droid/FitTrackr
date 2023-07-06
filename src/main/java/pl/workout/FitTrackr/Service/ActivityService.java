@@ -37,15 +37,27 @@ public class ActivityService {
 
     public Activity addActivity(Long userId, Activity activity) {
         User userDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
-
+        int calories = 0;
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 
-        int liczba = (int) medicalInfoRepository.findByUserId(userId).getHeight();
+        int height = (int) medicalInfoRepository.findByUserId(userId).getHeight();
+        int weight = (int) medicalInfoRepository.findByUserId(userId).getWeight();
 
+        switch (activity.getName()){
+            case RUNNING:{
+                calories = (int) (weight * activity.getDistance()*0.09);
+            }
+            case CYCLING:{
+
+            }
+            case SWIMMING:{
+
+            }
+        }
         activity.setUser(userDb);
         activity.setCreatedAt(localDateTime.format(formatter));
-        activity.setCaloriesBurned(liczba);
+        activity.setCaloriesBurned(calories);
         return activityRepository.save(activity);
 
     }
