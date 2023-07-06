@@ -40,11 +40,15 @@ public class ActivityService {
                 .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
         Activity activityDb = activityRepository.findByIdAndUserId(activityId,userId)
                 .orElseThrow(() -> new ResourceNotFoundException("ActivityId " + activityId + " not found"));
-////not finished!!!!!!!!!!!!
 
+        activityDb.setName(activity.getName());
+        activityDb.setDescription(activityDb.getDescription());
+        activityDb.setDuration(activityDb.getDuration());
+        activityDb.setDistance(activityDb.getDistance());
+        activityDb.setCaloriesBurned(activity.getCaloriesBurned());
+        activityDb.setResult(activity.getResult());
 
-
-
-        return activity;
+        activityRepository.save(activityDb);
+        return activityDb;
     }
 }

@@ -35,7 +35,6 @@ public class Activity implements Serializable{
     private User user;
     @OneToOne(cascade = CascadeType.ALL)
     private Result result;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Note> note;
+
 
 }
