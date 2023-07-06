@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.workout.FitTrackr.Exception.ResourceNotFoundException;
 import pl.workout.FitTrackr.Model.Activity;
+import pl.workout.FitTrackr.Model.MedicalInfo;
 import pl.workout.FitTrackr.Model.User;
 import pl.workout.FitTrackr.Repository.ActivityRepository;
+import pl.workout.FitTrackr.Repository.MedicalInfoRepository;
 import pl.workout.FitTrackr.Repository.UserRepository;
 
 import java.time.Instant;
@@ -23,6 +25,8 @@ public class ActivityService {
     private final ActivityRepository activityRepository;
     @Autowired
     private final UserRepository userRepository;
+    @Autowired
+    private final MedicalInfoRepository medicalInfoRepository;
 
     public List<Activity> getActivities(Long userId){
         return activityRepository.findByUserId(userId);
@@ -32,12 +36,16 @@ public class ActivityService {
     }
 
     public Activity addActivity(Long userId, Activity activity) {
+        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-        User userDb = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+
+        int liczba = (int) medicalInfoRepository.findByUserId(userId).getHeight();
+
         activity.setUser(userDb);
         activity.setCreatedAt(localDateTime.format(formatter));
+        activity.setCaloriesBurned(liczba);
         return activityRepository.save(activity);
 
     }

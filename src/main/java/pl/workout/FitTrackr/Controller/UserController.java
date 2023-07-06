@@ -27,6 +27,7 @@ public class UserController {
         return userService.getUserById(id).orElseThrow();
     }
 
+
     @PostMapping("/")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user){

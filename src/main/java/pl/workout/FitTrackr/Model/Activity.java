@@ -27,6 +27,7 @@ public class Activity implements Serializable{
     private String description;
     private String duration;
     private Double distance;
+    @Transient
     private int caloriesBurned;
     @Transient
     private String createdAt;
