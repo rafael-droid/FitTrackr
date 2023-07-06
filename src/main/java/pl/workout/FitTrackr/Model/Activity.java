@@ -10,8 +10,9 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,7 +28,8 @@ public class Activity implements Serializable{
     private String duration;
     private Double distance;
     private int caloriesBurned;
-    private Date createdAt;
+    @Transient
+    private String createdAt;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)

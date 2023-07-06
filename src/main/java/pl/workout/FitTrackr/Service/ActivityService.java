@@ -10,6 +10,10 @@ import pl.workout.FitTrackr.Model.User;
 import pl.workout.FitTrackr.Repository.ActivityRepository;
 import pl.workout.FitTrackr.Repository.UserRepository;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -28,9 +32,12 @@ public class ActivityService {
     }
 
     public Activity addActivity(Long userId, Activity activity) {
+        LocalDateTime localDateTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         User userDb = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
         activity.setUser(userDb);
+        activity.setCreatedAt(localDateTime.format(formatter));
         return activityRepository.save(activity);
 
     }
