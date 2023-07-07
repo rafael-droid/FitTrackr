@@ -1,12 +1,9 @@
 package pl.workout.FitTrackr.Controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.workout.FitTrackr.Model.MedicalInfo;
-import pl.workout.FitTrackr.Model.User;
-import pl.workout.FitTrackr.Repository.MedicalInfoRepository;
 import pl.workout.FitTrackr.Service.MedicalInfoService;
 
 @RestController
@@ -25,5 +22,11 @@ public class MedicalInfoController {
     @ResponseStatus(HttpStatus.CREATED)
     public MedicalInfo createMedicalInfo(@PathVariable("userId") Long userId, @RequestBody MedicalInfo medicalInfo){
         return medicalInfoService.addMedicalInfo(userId, medicalInfo);
+    }
+
+    @PutMapping("/{userId}/medicalInfo/{medicalInfoId}")
+    @ResponseStatus(HttpStatus.OK)
+    public MedicalInfo updateMedicalInfo(@PathVariable("userId") Long userId, @PathVariable("medicalInfoId") Long medicalInfoId, @RequestBody MedicalInfo medicalInfo){
+        return medicalInfoService.updateMedicalInfo(userId, medicalInfoId, medicalInfo);
     }
 }

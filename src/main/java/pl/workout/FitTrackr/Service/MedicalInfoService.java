@@ -29,4 +29,16 @@ public class MedicalInfoService {
         return medicalInfoDb;
 
     }
+
+    public MedicalInfo updateMedicalInfo(Long userId, Long medicalInfoId, MedicalInfo medicalInfo) {
+        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+        MedicalInfo medicalInfoDb = medicalInfoRepository.findById(medicalInfoId).orElseThrow(() -> new ResourceNotFoundException("MedicalInfoId " + medicalInfoId + " not found"));
+
+        medicalInfoDb.setHeight(medicalInfo.getHeight());
+        medicalInfoDb.setWeight(medicalInfo.getWeight());
+
+        medicalInfoRepository.save(medicalInfoDb);
+
+        return medicalInfoDb;
+    }
 }

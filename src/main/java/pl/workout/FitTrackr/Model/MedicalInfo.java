@@ -24,4 +24,5 @@ public class MedicalInfo implements Serializable {
     @MapsId
     @JoinColumn(name = "user_id")
     private User user;
+
 }

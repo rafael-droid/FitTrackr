@@ -6,15 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.workout.FitTrackr.Exception.ResourceNotFoundException;
 import pl.workout.FitTrackr.Model.Activity;
-import pl.workout.FitTrackr.Model.MedicalInfo;
 import pl.workout.FitTrackr.Model.User;
 import pl.workout.FitTrackr.Repository.ActivityRepository;
 import pl.workout.FitTrackr.Repository.MedicalInfoRepository;
 import pl.workout.FitTrackr.Repository.UserRepository;
-
-import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 

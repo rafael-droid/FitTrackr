@@ -10,11 +10,7 @@ import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import pl.workout.FitTrackr.Model.Enum.KindActivity;
-
 import java.io.Serializable;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.Date;
 
 @Getter
 @Setter
