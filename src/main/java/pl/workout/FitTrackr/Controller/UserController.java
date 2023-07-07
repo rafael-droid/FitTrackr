@@ -3,6 +3,7 @@ package pl.workout.FitTrackr.Controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 import pl.workout.FitTrackr.Model.User;
 import pl.workout.FitTrackr.Service.UserService;
 
@@ -24,7 +25,7 @@ public class UserController {
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public User getUserById(@PathVariable("id") Long id){
-        return userService.getUserById(id).orElseThrow();
+        return userService.getUserById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + id + " not found"));
     }
 
 
@@ -34,9 +35,9 @@ public class UserController {
         return userService.addUser(user);
     }
 
-    @PutMapping("/")
+    @PutMapping("/{userId}")
     @ResponseStatus(HttpStatus.OK)
-    public User updateUser(@RequestBody User user){
-        return userService.editUser(user);
+    public User updateUser(@PathVariable("userId") Long userId, @RequestBody User user){
+        return userService.editUser(userId, user);
     }
 }

@@ -3,7 +3,9 @@ package pl.workout.FitTrackr.Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.workout.FitTrackr.Exception.ResourceNotFoundException;
 import pl.workout.FitTrackr.Model.Activity;
 import pl.workout.FitTrackr.Model.User;
@@ -32,7 +34,7 @@ public class ActivityService {
     }
 
     public Activity addActivity(Long userId, Activity activity) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
         int calories = 0;
         LocalDateTime localDateTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -60,9 +62,9 @@ public class ActivityService {
 
     public Activity updateActivity(Long userId, Long activityId, Activity activity) {
         User userDb = userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
         Activity activityDb = activityRepository.findByIdAndUserId(activityId,userId)
-                .orElseThrow(() -> new ResourceNotFoundException("ActivityId " + activityId + " not found"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ActivityId " + activityId + " not found"));
 
         activityDb.setName(activity.getName());
         activityDb.setDescription(activityDb.getDescription());

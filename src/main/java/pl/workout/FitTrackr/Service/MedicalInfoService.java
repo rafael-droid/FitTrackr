@@ -2,7 +2,9 @@ package pl.workout.FitTrackr.Service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 import pl.workout.FitTrackr.Exception.ResourceNotFoundException;
 import pl.workout.FitTrackr.Model.MedicalInfo;
 import pl.workout.FitTrackr.Model.User;
@@ -22,7 +24,7 @@ public class MedicalInfoService {
     }
 
     public MedicalInfo addMedicalInfo(Long userId, MedicalInfo medicalInfo) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
+        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
         medicalInfo.setUser(userDb);
         MedicalInfo medicalInfoDb = medicalInfoRepository.save(medicalInfo);
 
@@ -31,8 +33,8 @@ public class MedicalInfoService {
     }
 
     public MedicalInfo updateMedicalInfo(Long userId, Long medicalInfoId, MedicalInfo medicalInfo) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResourceNotFoundException("UserId " + userId + " not found"));
-        MedicalInfo medicalInfoDb = medicalInfoRepository.findById(medicalInfoId).orElseThrow(() -> new ResourceNotFoundException("MedicalInfoId " + medicalInfoId + " not found"));
+        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
+        MedicalInfo medicalInfoDb = medicalInfoRepository.findById(medicalInfoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "MedicalInfoId " + medicalInfoId + " not found"));
 
         medicalInfoDb.setHeight(medicalInfo.getHeight());
         medicalInfoDb.setWeight(medicalInfo.getWeight());
