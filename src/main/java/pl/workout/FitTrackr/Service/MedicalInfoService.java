@@ -23,17 +23,19 @@ public class MedicalInfoService {
     }
 
     public MedicalInfo addMedicalInfo(Long userId, MedicalInfo medicalInfo) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
+        User userDb = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
         medicalInfo.setUser(userDb);
-        MedicalInfo medicalInfoDb = medicalInfoRepository.save(medicalInfo);
 
-        return medicalInfoDb;
+        return medicalInfoRepository.save(medicalInfo);
 
     }
 
     public MedicalInfo updateMedicalInfo(Long userId, Long medicalInfoId, MedicalInfo medicalInfo) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
-        MedicalInfo medicalInfoDb = medicalInfoRepository.findById(medicalInfoId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "MedicalInfoId " + medicalInfoId + " not found"));
+        User userDb = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
+        MedicalInfo medicalInfoDb = medicalInfoRepository.findById(medicalInfoId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "MedicalInfoId " + medicalInfoId + " not found"));
 
         medicalInfoDb.setHeight(medicalInfo.getHeight());
         medicalInfoDb.setWeight(medicalInfo.getWeight());

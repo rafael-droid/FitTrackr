@@ -30,7 +30,8 @@ public class UserService {
     }
 
     public User editUser(Long userId,User user) {
-        User userDb = userRepository.findById(userId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
+        User userDb = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "UserId " + userId + " not found"));
 
         userDb.setFirstName(user.getFirstName());
         userDb.setLastName(user.getLastName());
