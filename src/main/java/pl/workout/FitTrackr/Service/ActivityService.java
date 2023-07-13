@@ -28,9 +28,6 @@ public class ActivityService {
     public List<Activity> getActivities(Long userId){
         return activityRepository.findByUserId(userId);
     }
-    public Activity getActivityById(Long id){
-        return activityRepository.findAllById(id);
-    }
 
     public Activity addActivity(Long userId, Activity activity) {
         User userDb = userRepository.findById(userId)
