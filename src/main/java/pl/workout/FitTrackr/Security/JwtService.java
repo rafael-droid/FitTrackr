@@ -50,6 +50,9 @@ public class JwtService {
         return extractExpiration(token).before(new Date());
     }
 
+    private Date extractExpiration(String token) {
+    }
+
 
     private Claims extractAllClaims(String token){
         return Jwts
