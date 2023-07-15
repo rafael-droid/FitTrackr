@@ -40,6 +40,9 @@ public class JwtService {
                 .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+    public boolean isTokenValid(String token, UserDetails userDetails){
+        return false;
+    }
     private Claims extractAllClaims(String token){
         return Jwts
                 .parserBuilder()
