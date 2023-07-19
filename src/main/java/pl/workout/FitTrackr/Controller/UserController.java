@@ -40,10 +40,4 @@ public class UserController {
     public User updateUser(@PathVariable("userId") Long userId, @RequestBody User user){
         return userService.editUser(userId, user);
     }
-
-    @PostMapping("/auth/register")
-    @ResponseStatus(HttpStatus.OK)
-    public AuthenticationResponse register(@RequestBody AuthenticationRequest request){
-
-    }
 }
