@@ -3,6 +3,7 @@ package pl.workout.FitTrackr.Service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import pl.workout.FitTrackr.Model.User;
@@ -18,10 +19,13 @@ public class UserService {
     public final UserRepository userRepository;
 
     public List<User> getUsers(){
+
         return userRepository.findAll();
     }
 
     public Optional<User> getUserById(Long id) {
+        Optional<User> user = userRepository.findById(id);
+        System.out.println(user.get().getPassword());
         return userRepository.findById(id);
     }
 
