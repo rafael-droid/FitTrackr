@@ -35,4 +35,10 @@ public class RouteController {
         return routeService.updateRoute(userId, routeId, route);
     }
 
+    @GetMapping("/{userId}/route/{routeId}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Route> deleteRoute(@PathVariable("userId") Long userId, @PathVariable("activityId") Long routeId){
+        return routeService.deleteRoute(userId, routeId);
+    }
+
 }
