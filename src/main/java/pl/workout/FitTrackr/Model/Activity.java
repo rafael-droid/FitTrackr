@@ -21,8 +21,8 @@ public class Activity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private KindActivity name;
+    //@Enumerated(EnumType.STRING)
+    private String name;
     private String description;
     private String duration;
     private Double distance;

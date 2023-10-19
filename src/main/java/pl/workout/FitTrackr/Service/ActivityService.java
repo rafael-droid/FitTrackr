@@ -40,13 +40,13 @@ public class ActivityService {
         int weight = (int) medicalInfoRepository.findByUserId(userId).getWeight();
 
         switch (activity.getName()){
-            case RUNNING:{
+            case "RUNNING":{
                 calories = (int) (weight * activity.getDistance()*0.09);
             }
-            case CYCLING:{
+            case "CYCLING":{
 
             }
-            case SWIMMING:{
+            case "SWIMMING":{
 
             }
         }
