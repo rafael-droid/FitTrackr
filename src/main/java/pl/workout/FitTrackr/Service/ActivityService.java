@@ -73,4 +73,8 @@ public class ActivityService {
         activityRepository.save(activityDb);
         return activityDb;
     }
+    public int deleteActivity(Long userId, Long activityId){
+
+        return 0;
+    }
 }
