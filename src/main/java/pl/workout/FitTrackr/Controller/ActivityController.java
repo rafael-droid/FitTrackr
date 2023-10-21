@@ -32,4 +32,9 @@ public class ActivityController {
     public Activity updateActivity(@PathVariable("userId") Long userId, @PathVariable("activityId") Long activityId, @RequestBody Activity activity){
         return activityService.updateActivity(userId, activityId, activity);
     }
+    @DeleteMapping("/{userId}/activity/{activityId}")
+    @ResponseStatus(HttpStatus.OK)
+    public int deleteActivity(@PathVariable("userId") Long userId, @PathVariable("activityId") Long activityId){
+        return activityService.deleteActivity(userId, activityId);
+    }
 }
