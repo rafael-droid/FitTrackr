@@ -29,13 +29,13 @@ public class UserController {
     }
 
 
-    @PostMapping("/")
+    @PostMapping("/add")
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user){
         return userService.addUser(user);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping("/update/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public User updateUser(@PathVariable("userId") Long userId, @RequestBody User user){
         return userService.editUser(userId, user);
